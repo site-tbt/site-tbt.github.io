@@ -1,0 +1,45 @@
+<FilesMatch "\.(ico|jpg|jpeg|png|gif|js|css|swf|otf|ttf|eot|woff|svg|htc)$">
+  ExpiresDefault "access plus 1 year"
+</FilesMatch>
+
+AddEncoding gzip .gz
+
+RewriteEngine on
+RewriteCond %{HTTP:Accept-encoding} gzip
+RewriteCond %{HTTP_USER_AGENT} !Konqueror
+RewriteCond %{REQUEST_FILENAME}.gz -f
+RewriteRule ^(.*)\.css$ $1.css.gz [QSA,L]
+RewriteRule ^(.*)\.js$ $1.js.gz [QSA,L]
+RewriteRule ^(.*)\.html$ $1.html.gz [QSA,L]
+RewriteRule ^(.*)\.svg$ $1.svg.gz [QSA,L]
+RewriteRule ^(.*)\.oft$ $1.oft.gz [QSA,L]
+RewriteRule ^(.*)\.ttf$ $1.ttf.gz [QSA,L]
+RewriteRule ^(.*)\.xml$ $1.xml.gz [QSA,L]
+
+<Files *.css.gz>
+  ForceType text/css
+</Files>
+
+<Files *.js.gz>
+  ForceType application/javascript
+</Files>
+
+<Files *.html.gz>
+  ForceType text/html
+</Files>
+
+<Files *.svg.gz>
+  ForceType image/svg+xml
+</Files>
+
+<Files *.otf.gz>
+  ForceType application/x-font-opentype
+</Files>
+
+<Files *.ttf.gz>
+  ForceType application/x-font-ttf
+</Files>
+
+<Files *.xml.gz>
+  ForceType application/xml
+</Files>
